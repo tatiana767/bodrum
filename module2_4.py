@@ -18,16 +18,17 @@ not_primes = []
 
 for i in numbers:
     z = 0
+    if i==2: print('hoy')
     if i != 1 and i != 0:
-        for j in range(2, i):
-            # print('я тут, j = ', j, 'i = ', i,   i % j)
-            if i % j == 0 and z == 0:
-               # print('hey! ', i, ' - ', j)
-                not_primes.append(i)
+        for j in range(2, i+1):
+
+            if i % (j) == 0 and z == 0 and i != j :
                 z = z + 1
-            elif j == i - 1 and z == 0:
-                    primes.append(i)
+
+            elif (j == i  and z == 0) :
+                primes.append(i)
 
 
 print('простые :', primes)
 print('составные: ', not_primes)
+
