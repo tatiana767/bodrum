@@ -43,11 +43,10 @@ def s_(n, m):
                 #print(list_[m - 1][j])
                 print(f'm : {m} n: {n}  j= {list_[m - 1][j][1]}')
                 if list_[m - 1][j][1] == n:
-                    #print('sfsgsdg: ', list_[m - 1][j], j)
-                    #print(f'{list_[m - 1][j][1]} == n:{n}')
+        
                     print('delete:', list_[m - 1].pop(j))
                     if len(list_[m-1]) == 0 :
-                        #print('!!!')
+                        
                         list_.pop(m-1)
                     print('control :', list_)
                     break
@@ -55,9 +54,9 @@ def s_(n, m):
 
 for i in range(0, len(list_)):
    if i < len(list_):
-        #print("i = ", i , 'len[i] = ', len(list_[i]))
+        
         for j in range(0, len(list_[i])):
-            #print('j= ', j )
+            
             if i == j:
                 continue
             else :
