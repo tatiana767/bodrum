@@ -63,6 +63,19 @@ for i in range(0, len(list_)):
                 #print(f'(вызываем для {list_[i][j][0]} - {list_[i][j][1]}')
                 s_(list_[i][j][0],list_[i][j][1])
 
+for i in range(0,len(list_)): #удаление делителей с одинаковыми слагаемыми
+    if i < len(list_):
+        for j in range(0,len(list_[i])):
+            
+            if j < len(list_[i]):
+
+                if list_[i][j][0] == list_[i][j][1]:
+                  
+                    list_[i].pop(j)
+                    if len(list_[i]) == 0:
+                         list_.pop(i)
+                    break
+
 print('итоговый список : ', list_)
 
 
