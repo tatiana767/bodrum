@@ -43,7 +43,7 @@ class Video:
         self.duration = duration
         self.time_now = time_now
         self.adult_mode = adult_mode
-        print(f'video object: {self.title}  {self.duration} ')
+        #print(f'video object: {self.title}  {self.duration} ')
 
 
 
@@ -59,8 +59,8 @@ class urTube :
         self.users = list(*Users)
         self.videos = list(*Videos)
         self.current_user = current_user
-        print("users", self.users)
-        print("videos", self.videos)
+        #print("users", self.users)
+        #print("videos", self.videos)
 
     def  log_in(self, nickname, password):
       print()
@@ -72,20 +72,20 @@ class urTube :
         e = 0
         for i in self.users:
            if i.nickname == nickname:
-               print('такой пользователь уже существует')
+               print(f' пользователь {i.nickname} уже существует')
                e = 1
                break
 
         if e == 0:
             self.users.append(User(nickname, hash(password), age))
             self.current_user = User(nickname, hash(password), age)
-            print(self.users)
+            #print(self.users)
 
 
 
     def add(self, *Videos):
 
-        print(*Videos)
+        #print(*Videos)
         for i in Videos:
                 if self.videos.__contains__(i):
                     print('такое видео существует')
@@ -99,15 +99,15 @@ class urTube :
         for i in self.videos:
 
             if str(i.title).upper().__contains__(title.upper()):
-                #print(i.title, i.duration)
-                c.append([i.title, i.duration, i.adult_mode])
+               # print(i.title, i.duration)
+                c.append(i.title)
         return c
 
     def watch_video(self, title):
         for i in self.videos:
 
             if str(i.title) == title:
-                print(i.title, i.duration)
+                #print(i.title, i.duration)
                 if self.current_user != '':
                    if  i.adult_mode == True and self.current_user.age < 18 :
                             print('Вам нет 18 лет, пожалуйста покиньте страницу')
@@ -115,9 +115,9 @@ class urTube :
                         from time import sleep as sleep
 
                         for i in range(0, i.duration):
-                             print(i)
+                             print(i, end = ' ')
                              sleep(1)
-                        print('конец фильма')
+                        print('конец видео')
                 else:
                     print('Войдите в аккаунт, чтобы смотреть видео"')
 
@@ -135,8 +135,8 @@ if __name__ == '__main__':
     # Добавление видео
     ur.add(v1, v2)
    # print(ur.videos[0].title)
-    #print(*ur.get_videos('Лучший'))
-    #print(*ur.get_videos('ПРОГ'))
+    print(ur.get_videos('Лучший'))
+    print(ur.get_videos('ПРОГ'))
     # Проверка на вход пользователя и возрастное ограничение
     ur.watch_video('Для чего девушкам парень программист?')
     ur.register('vasya_pupkin', 'lolkekcheburek', 13)
@@ -152,3 +152,11 @@ if __name__ == '__main__':
     ur.watch_video('Лучший язык программирования 2024 года!')
 
 
+'''['Лучший язык программирования 2024 года']
+['Лучший язык программирования 2024 года', 'Для чего девушкам парень программист?']
+Войдите в аккаунт, чтобы смотреть видео
+Вам нет 18 лет, пожалуйста покиньте страницу
+1 2 3 4 5 6 7 8 9 10 Конец видео
+Пользователь vasya_pupkin уже существует
+urban_pythonist
+'''
