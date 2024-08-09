@@ -19,7 +19,7 @@ first_result = ( len(x) - len(y) for x,y in list(zip(first, second)) if len(x)!=
 
 second_res = ((first[i] , second[i])  for i in range(0,3)  )
 
-second_result = [False if len(first[i]) > len(second[i]) else True for i in range(0, len(first))]
+second_result = (False if len(first[i]) > len(second[i]) else True for i in range(0, len(first)))
 
 print(list(first_result))
 print(list(second_result))
