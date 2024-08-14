@@ -21,11 +21,13 @@ from time import sleep
 from datetime import datetime
 from threading import Thread
 
+
 def write_words(word_count, file_name):
     with open(file_name, 'w', encoding='utf-8') as file:
        for i in range(0,word_count):
            file.write('какое то слово N' + str(i)+ '\n')
            sleep(0.1)
+    print('Завершилась запись в файл ', file_name)
 
 
 time_start = datetime.now()
