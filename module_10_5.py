@@ -15,6 +15,7 @@
 Для избежания некорректного вывода запускайте линейный вызов и многопроцессный по отдельности,
 предварительно закомментировав другой.'''
 import multiprocessing
+import os
 
 from datetime import datetime
 
@@ -22,32 +23,36 @@ from datetime import datetime
 def read_info(name):
     all_data = []
     with open(name, 'r', encoding='utf-8') as file :
-        str_ = file.readline()
-        if str_!='':
-            all_data.append(str_)
+        data = []
+
+        for data in file.readlines():
+            #print('--', data )
+           # print(os.getgid())
+            all_data.append(data[0:-1])
 
 
 
-filenames_ = [f'./111/file {number}.txt' for number in range(1, 5)]
+'''filenames_ = [f'./111/file {number}.txt' for number in range(1, 5)]
 
 start = datetime.now()
 for i in filenames_:
        #print(i)
        read_info(i)
 end = datetime.now()
-print('--', end - start)
+print('--', end - start)'''
 
 
-'''if __name__=='__main__':
+
+if __name__=='__main__':
 
 
     all_files = [f'./111/file {number}.txt' for number in range(1, 5)]
     start = datetime.now()
-    with multiprocessing.Pool(processes=3) as pool:
+    with multiprocessing.Pool(processes=4) as pool:
             pool.map(read_info, all_files)
 
     end = datetime.now()
-    print(end - start)'''
+    print(end - start)
 
 
 
