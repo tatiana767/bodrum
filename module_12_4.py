@@ -42,6 +42,7 @@ class TournamentTest(unittest.TestCase):
     @classmethod
     def setUpClass(cls):
         cls.all_results = {}
+        cls.res = []
 
     def testRun1(self):
          self.run1 = Runner.Runner('Uain', 10)
@@ -49,11 +50,10 @@ class TournamentTest(unittest.TestCase):
          self.run3 = Runner.Runner('Nik', 3)
          obj = Runner.Tournament(90, self.run1, self.run3)
          TournamentTest.all_results = obj.start()
+         TournamentTest.res.append(TournamentTest.all_results)
 
          print('RUN#1', TournamentTest.all_results[max(TournamentTest.all_results.keys())])
          self.assertTrue(self.all_results[max(self.all_results.keys())], 'Nik')
-         for key, value in TournamentTest.all_results.items():
-            print(f"{key} - {value} ")
 
     def testRun2(self):
 
@@ -62,11 +62,10 @@ class TournamentTest(unittest.TestCase):
         self.run3 = Runner.Runner('Nik', 3)
         obj = Runner.Tournament(90, self.run2, self.run3)
         TournamentTest.all_results = obj.start()
+        TournamentTest.res.append(TournamentTest.all_results)
 
         print('RUN#2', TournamentTest.all_results[max(TournamentTest.all_results.keys())])
         self.assertTrue(self.all_results[max(self.all_results.keys())], 'Nik')
-        for key, value in TournamentTest.all_results.items():
-            print(f"{key} - {value} ")
 
     def testRun3(self):
 
@@ -75,6 +74,7 @@ class TournamentTest(unittest.TestCase):
         self.run3 = Runner.Runner('Nik', 3)
         obj = Runner.Tournament(90, self.run1, self.run2, self.run3)
         TournamentTest.all_results = obj.start()
+        TournamentTest.res.append(TournamentTest.all_results)
 
         print('RUN#3', TournamentTest.all_results[max(TournamentTest.all_results.keys())])
         self.assertTrue(self.all_results[max(self.all_results.keys())], 'Nik')
@@ -87,8 +87,14 @@ class TournamentTest(unittest.TestCase):
     @classmethod
     def tearDownClass(cls):
 
-        for key, value in TournamentTest.all_results.items():
-             print(f"{key} - {value} ")
+        j = 1
+        for i in TournamentTest.res:
+            print(f'забег {j}:')
+            j+=1
+            for key, value in i.items():
+                print(key, "-" , value)
+
+
 
 
 
