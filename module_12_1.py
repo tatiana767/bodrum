@@ -24,7 +24,7 @@ import Runner
 import unittest
 
 class RunnerTest(unittest.TestCase):
-
+    is_frozen = False
     def test_walk(self):
         Obj = Runner.Runner("urij")
         for i in range(0,10):
