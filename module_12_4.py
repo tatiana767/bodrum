@@ -32,6 +32,7 @@ import pprint
 
 class TournamentTest(unittest.TestCase):
 
+    is_frozen = True
     #self.run1 = Runner.Runner('Uain')
     def SetUp(self):
 
