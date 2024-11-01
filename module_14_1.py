@@ -32,7 +32,7 @@ connection.commit()
 
 cursor.execute("Select * from Users where Users.age != 60")
 users = cursor.fetchall()
-print("fuck")
+
 for user in users :
     print(user)
 
