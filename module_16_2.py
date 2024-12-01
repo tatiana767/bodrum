@@ -32,7 +32,7 @@ async def admin():
 @app.get("/users/{user_id}")
 async def read_user1(
 user_id: Annotated[int, Path(ge=1, le=100, description="Enter User ID")]):
-  return {"message": f"Вы вошли как durak User{user_id}"}
+  return {"message": f"Вы вошли как User{user_id}"}
 
 
 @app.get("/users/{username}/{age}")
