@@ -7,7 +7,8 @@ post запрос по маршруту '/user/{username}/{age}', который
 значению ключом значение строки "Имя: {username}, возраст: {age}".
  И возвращает строку "User <user_id> is registered".
 put запрос по маршруту '/user/{user_id}/{username}/{age}', который обновляет значение из словаря users
-под ключом user_id на строку "Имя: {username}, возраст: {age}". И возвращает строку "The user <user_id> is updated"
+под ключом user_id на строку "Имя: {username}, возраст: {age}". И возвращает строку "The user <user_id> is
+updated"
 delete запрос по маршруту '/user/{user_id}', который удаляет из словаря users по ключу user_id пару'''
 
 
@@ -29,7 +30,8 @@ async def root():
 
 
 @app.post("/user/{username}/{age}")
-async def create_user(username: str, age: int):
+async def create_user( username:Annotated[str, Path(min_length=3, max_length=20, description="Enter username")],
+                       age: Annotated[int, Path(ge=18, le=120, description="Enter age")] ):
   new_user = int(max(users.keys())) + 1
   users[str(new_user)] = f"Имя:{username}, возраст:{age}"
 
@@ -42,7 +44,9 @@ async def get_users()  -> dict() :
 
 
 @app.put("/users/{user_id}/{user_name}/{age}")
-async def update_users(user_id: int, user_name: str, age: int ):
+async def update_users(user_id: Annotated[int, Path(ge=1, le=100, description="Enter User ID")],
+                       user_name: Annotated[str, Path(min_length=3, max_length=20, description="Enter username")],
+                       age: Annotated[int, Path(ge=18, le=120, description="Enter age")] ):
   if users[str(user_id)] :
 
       users.update({f"{str(user_id)}": f"Имя: {user_name}, возраст:{age}"})
